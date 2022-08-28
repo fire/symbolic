@@ -4,7 +4,7 @@
 
 # symbolic
 
-`symbolic` is a C++/Python library for parsing and manipulating [Planning Domain
+`symbolic` is a C++ library for parsing and manipulating [Planning Domain
 Definition Language (PDDL)](https://planning.wiki/_citedpapers/pddl1998.pdf)
 symbols for AI planning. This library is built upon
 [VAL](https://github.com/KCL-Planning/VAL), a C++ library for validating PDDL
@@ -15,15 +15,9 @@ See the documentation for `symbolic`
 
 ## Installation
 
-The Python library can be installed via `pip`:
-```
-pip install pysymbolic
-```
-
 To compile the C++ library, follow the instructions below.
 
-This library is written in C++ with Python bindings automatically generated with
-[pybind11](https://github.com/pybind/pybind11). It has been tested on
+This library is written in C++. It has been tested on
 Ubuntu 18.04, Ubuntu 20.04, and macOS 10.15 Catalina.
 
 Compilation requirements:
@@ -42,36 +36,9 @@ mkdir build
 cmake -B build
 ```
 
-### Python only
-
-Use `pip` to install `symbolic` in your virtual environment.
-```sh
-pip install .
-```
-
-You can now import the `symbolic` package in Python.
-```py
-import symbolic
-```
-
-### C++ and Python
-
-An in-place `pip` install will run the appropriate CMake command to build
-`symbolic` locally in the `./build` folder. This will give you access to the
-`cmake` configuration files for C++ as well as the `symbolic` package in
-Python.
-```sh
-pip install -e .
-```
-
 ## Updating CMake
 
 ### Ubuntu 18.04
-
-The simplest way to install the latest version of `cmake` is through `pip`:
-```sh
-pip install cmake
-```
 
 You can also install it through `apt`:
 ```sh
@@ -87,9 +54,4 @@ sudo rm /etc/apt/trusted.gpg.d/kitware.gpg
 Install `cmake` through Homebrew:
 ```sh
 brew install cmake
-```
-
-Or through `pip`:
-```sh
-pip3 install cmake
 ```
