@@ -44,7 +44,7 @@ target_sources(${LIB_NAME}
 )
 
 # Set include directories.
-set(LIB_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/include")
+set(LIB_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/include" "$ENV{EIGEN3_INCLUDE_DIR}")
 target_include_directories(${LIB_NAME}
   PUBLIC
     "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
@@ -52,16 +52,17 @@ target_include_directories(${LIB_NAME}
     "$<BUILD_INTERFACE:${LIB_INCLUDE_DIR}>"
 )
 
+find_package(Eigen)
+find_package(doctest)
+
 # Link library dependencies.
-lib_add_subdirectory(ctrl_utils)
-ctrl_utils_add_subdirectory(Eigen3)
-ctrl_utils_add_subdirectory(doctest)
+lib_add_subdirectory(eigen)
+lib_add_subdirectory(doctest)
 lib_add_subdirectory(VAL)
 target_link_libraries(${LIB_NAME}
   PUBLIC
-    Eigen3::Eigen
+    ${EIGEN_DIR}
   PRIVATE
-    ctrl_utils::ctrl_utils
     VAL::VAL
 )
 
