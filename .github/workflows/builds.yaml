@@ -34,41 +34,5 @@ jobs:
         run: |
           mkdir -p build
           cd build
-          cmake .. -DBUILD_PYTHON=ON -DPYBIND11_PYTHON_VERSION=3
+          cmake ..
           make
-
-  pip:
-    name: Pip ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os:
-          - ubuntu-latest
-          - macos-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Install
-        env:
-          CMAKE_OSX_ARCHITECTURES: "arm64;x86_64"
-        run: |
-          pip3 install . -vvv
-
-  pip_dev:
-    name: Pip dev ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os:
-          - ubuntu-latest
-          - macos-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Install
-        env:
-          CMAKE_OSX_ARCHITECTURES: "arm64;x86_64"
-        run: |
-          pip3 install -e . -vvv

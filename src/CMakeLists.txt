@@ -66,11 +66,6 @@ target_link_libraries(${LIB_NAME}
     VAL::VAL
 )
 
-# Build python wrapper.
-if(${LIB_CMAKE_NAME}_BUILD_PYTHON)
-    add_subdirectory(python)
-endif()
-
 # Install the library.
 install(TARGETS ${LIB_NAME}
     EXPORT ${LIB_NAME}Targets
