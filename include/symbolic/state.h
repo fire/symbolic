@@ -12,7 +12,7 @@
 
 #define SYMBOLIC_STATE_USE_SET
 
-#include "../external/eigen.git/Eigen/Eigen"
+#include "../external/eigen/Eigen/Eigen"
 #include <exception>      // std::exception
 #include <functional>     // std::hash
 #include <optional>       // std::optional
