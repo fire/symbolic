@@ -65,11 +65,6 @@ if(${LIB_CMAKE_NAME}_BUILD_EXAMPLES)
     add_subdirectory(apps)
 endif()
 
-# Build tests.
-if(${LIB_CMAKE_NAME}_BUILD_TESTING)
-    add_subdirectory(tests)
-endif()
-
 # Build docs.
 if(${LIB_CMAKE_NAME}_BUILD_DOCS)
     find_package(Doxygen)

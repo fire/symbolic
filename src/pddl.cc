@@ -19,7 +19,6 @@
 #include <utility>  // std::move
 
 #include "symbolic/utils/parameter_generator.h"
-#include "utils/doctest.h"
 
 extern int yyparse();
 extern int yydebug;
@@ -317,8 +316,6 @@ bool Pddl::IsValid(bool verbose, std::ostream& os) const {
   return is_domain_valid && is_problem_valid;
 }
 
-TEST_CASE_FIXTURE(testing::Fixture, "Pddl.IsValid") { REQUIRE(pddl.IsValid()); }
-
 State Pddl::NextState(const State& state,
                       const std::string& action_call) const {
   // Parse strings
@@ -328,14 +325,6 @@ State Pddl::NextState(const State& state,
   const std::vector<Object>& arguments = action_args.second;
 
   return Apply(state, action, arguments, derived_predicates());
-}
-
-TEST_CASE_FIXTURE(testing::Fixture, "Pddl.NextState") {
-  const State& state = pddl.initial_state();
-  State next_state = state;
-  next_state.erase(Proposition(pddl, "on(hook, table)"));
-  next_state.emplace(pddl, "inhand(hook)");
-  REQUIRE(pddl.NextState(state, "pick(hook)") == next_state);
 }
 
 State Pddl::ApplyActions(const State& state,
@@ -407,12 +396,6 @@ bool Pddl::IsValidAction(const State& state,
   const std::vector<Object>& arguments = action_args.second;
 
   return action.IsValid(state, arguments);
-}
-
-TEST_CASE_FIXTURE(testing::Fixture, "Pddl.IsValidAction") {
-  const State& state = pddl.initial_state();
-  REQUIRE(pddl.IsValidAction(pddl.initial_state(), "pick(hook)") == true);
-  REQUIRE(pddl.IsValidAction(pddl.initial_state(), "pick(box)") == false);
 }
 
 bool Pddl::IsValidState(const State& state) const {

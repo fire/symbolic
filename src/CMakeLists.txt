@@ -10,7 +10,7 @@
 set(LIB_NAME ${PROJECT_NAME})
 
 # Create the library.
-add_library(${LIB_NAME} SHARED)
+add_library(${LIB_NAME} STATIC)
 add_library(${LIB_NAME}::${LIB_NAME} ALIAS ${LIB_NAME})
 
 target_compile_features(${LIB_NAME} PUBLIC cxx_std_17)
@@ -41,13 +41,13 @@ target_sources(${LIB_NAME}
     state.cc
     planning/planner.cc
     utils/parameter_generator.cc
-    utils/doctest.cc
 )
 
 # Set include directories.
 set(LIB_INCLUDE_DIR "${PROJECT_SOURCE_DIR}/include")
 target_include_directories(${LIB_NAME}
   PUBLIC
+    "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
     "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
     "$<BUILD_INTERFACE:${LIB_INCLUDE_DIR}>"
 )
@@ -62,7 +62,6 @@ target_link_libraries(${LIB_NAME}
     Eigen3::Eigen
   PRIVATE
     ctrl_utils::ctrl_utils
-    doctest::doctest
     VAL::VAL
 )
 
